@@ -10,18 +10,18 @@
 <body class="bg-gradient-to-br from-blue-50 via-white to-blue-100 min-h-screen flex flex-col font-inter antialiased">
     <div class="container mx-auto px-4 py-8 max-w-6xl">
         <header class="mb-10 text-center">
-            <h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mb-3 
+            <h1 class="text-2xl md:text-4xl lg:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mb-3 
                        animate-pulse transition-all duration-300 hover:scale-105">
                 Weather Forecast System
             </h1>
-            <p class="text-xl text-gray-600 font-light tracking-wide">
+            <p class="text-base md:text-xl lg:text-xl text-gray-600 font-light tracking-wide px-2">
                 The application features location-based forecasts, current weather conditions, and extended predictions displayed through a user-friendly interface using API data.
             </p>
         </header>
         
         <!-- Search Section -->
         <div class="max-w-xl mx-auto mb-8 transition-all duration-500 hover:shadow-lg">
-            <div class="flex shadow-md rounded-xl overflow-hidden">
+            <div class="flex flex-col sm:flex-row shadow-md rounded-xl overflow-hidden">
                 <input 
                     type="text" 
                     id="citySearch" 
@@ -35,9 +35,9 @@
                     class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white 
                            px-6 py-3 hover:from-blue-600 hover:to-indigo-700 
                            transition duration-300 ease-in-out 
-                           transform active:scale-95"
+                           transform active:scale-95 w-full sm:w-auto"
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                 </button>
@@ -54,78 +54,143 @@
                 <option value="">Recent Searches</option>
             </select>
         </div>
-       <!-- Current Location Button -->
-       <div class="text-center mb-8">
-        <button 
-            id="currentLocationBtn" 
-            class="bg-gradient-to-r from-green-400 to-emerald-600 
-                   text-white px-8 py-3 rounded-full 
-                   hover:from-green-500 hover:to-emerald-700 
-                   shadow-md hover:shadow-lg 
-                   transition duration-300 ease-in-out 
-                   transform hover:-translate-y-1 active:scale-95 
-                   flex items-center justify-center mx-auto space-x-2"
-        >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            <span>Use Current Location</span>
-        </button>
-    </div>
 
-    <!-- Current Weather Display -->
-    <div 
-        id="currentWeather" 
-        class="max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl p-8 mb-8 
-               border border-blue-100 hidden 
-               transform transition-all duration-500 
-               hover:shadow-3xl hover:scale-[1.02]"
-    >
-        <h2 
-            id="locationName" 
-            class="text-3xl font-bold mb-4 text-transparent bg-clip-text 
-                   bg-gradient-to-r from-blue-600 to-indigo-600"
-        ></h2>
-        <div class="flex items-center justify-between">
-            <div>
-                <p 
-                    id="temperature" 
-                    class="text-6xl font-extrabold text-gray-800"
-                ></p>
-                <p 
-                    id="weatherDescription" 
-                    class="text-xl text-gray-600 capitalize"
-                ></p>
-            </div>
-            <img 
-                id="weatherIcon" 
-                src="" 
-                alt="Weather Icon" 
-                class="w-32 h-32 animate-bounce"
+        <!-- New Control Section -->
+        <div class="flex flex-wrap justify-center space-x-2 sm:space-x-4 mb-8">
+            <!-- Current Location Button -->
+            <button 
+                id="currentLocationBtn" 
+                class="bg-gradient-to-r from-green-400 to-emerald-600 
+                       text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full 
+                       hover:from-green-500 hover:to-emerald-700 
+                       shadow-md hover:shadow-lg 
+                       transition duration-300 ease-in-out 
+                       transform hover:-translate-y-1 active:scale-95 
+                       flex items-center justify-center space-x-2 text-xs sm:text-base mb-2 sm:mb-0"
             >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span class="hidden sm:inline">Use Current Location</span>
+            </button>
+
+            <!-- Unit Toggle Button -->
+            <button 
+                id="unitToggle"
+                class="bg-gradient-to-r from-purple-400 to-indigo-600 
+                       text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full 
+                       hover:from-purple-500 hover:to-indigo-700 
+                       shadow-md hover:shadow-lg 
+                       transition duration-300 ease-in-out 
+                       transform hover:-translate-y-1 active:scale-95 
+                       text-xs sm:text-base mb-2 sm:mb-0"
+            >
+                Switch to Imperial
+            </button>
+
+            <!-- Data View Toggle Button -->
+            <button 
+                id="dataViewToggle"
+                class="bg-gradient-to-r from-pink-400 to-rose-600 
+                       text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full 
+                       hover:from-pink-500 hover:to-rose-700 
+                       shadow-md hover:shadow-lg 
+                       transition duration-300 ease-in-out 
+                       transform hover:-translate-y-1 active:scale-95 
+                       text-xs sm:text-base mb-2 sm:mb-0"
+            >
+                View: Detailed
+            </button>
+
+            <!-- Refresh Button -->
+            <button 
+                id="refreshButton"
+                class="bg-gradient-to-r from-yellow-400 to-orange-600 
+                       text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full 
+                       hover:from-yellow-500 hover:to-orange-700 
+                       shadow-md hover:shadow-lg 
+                       transition duration-300 ease-in-out 
+                       transform hover:-translate-y-1 active:scale-95 
+                       text-xs sm:text-base mb-2 sm:mb-0"
+            >
+                Refresh Weather
+            </button>
         </div>
-        <div class="mt-6 grid grid-cols-3 gap-6">
-            <div class="bg-blue-50 rounded-xl p-4 text-center hover:bg-blue-100 transition">
-                <p class="font-semibold text-blue-800">Humidity</p>
-                <p id="humidity" class="text-2xl font-bold text-blue-600"></p>
-            </div>
-            <div class="bg-green-50 rounded-xl p-4 text-center hover:bg-green-100 transition">
-                <p class="font-semibold text-green-800">Wind Speed</p>
-                <p id="windSpeed" class="text-2xl font-bold text-green-600"></p>
-            </div>
-            <div class="bg-purple-50 rounded-xl p-4 text-center hover:bg-purple-100 transition">
-                <p class="font-semibold text-purple-800">Pressure</p>
-                <p id="pressure" class="text-2xl font-bold text-purple-600"></p>
+
+        <!-- Dynamic Weather Data View -->
+        <div 
+            id="weatherDataView" 
+            class="max-w-7xl mx-auto bg-white rounded-2xl shadow-xl p-4 sm:p-6 mb-8 
+                   border border-blue-100 text-center 
+                   transform transition-all duration-500 
+                   hover:shadow-2xl"
+        >
+            <!-- Dynamically populated weather data view -->
+        </div>
+
+        <!-- Saved Locations Section -->
+        <div class="max-w-7xl mx-auto mb-8">
+            <h3 class="text-xl sm:text-2xl font-semibold text-gray-700 mb-4">Saved Locations</h3>
+            <div 
+                id="savedLocations" 
+                class="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5"
+            >
+                <!-- Dynamically populated saved locations -->
             </div>
         </div>
-    </div>
+
+        <!-- Current Weather Display -->
+        <div 
+            id="currentWeather" 
+            class="max-w-7xl mx-auto bg-white rounded-2xl shadow-2xl p-4 sm:p-8 mb-8 
+                   border border-blue-100 hidden 
+                   transform transition-all duration-500 
+                   hover:shadow-3xl hover:scale-[1.02]"
+        >
+            <h2 
+                id="locationName" 
+                class="text-2xl sm:text-3xl font-bold mb-4 text-transparent bg-clip-text 
+                       bg-gradient-to-r from-blue-600 to-indigo-600 text-center"
+            ></h2>
+            <div class="flex flex-col sm:flex-row items-center justify-between">
+                <div class="text-center sm:text-left mb-4 sm:mb-0">
+                    <p 
+                        id="temperature" 
+                        class="text-4xl sm:text-6xl font-extrabold text-gray-800"
+                    ></p>
+                    <p 
+                        id="weatherDescription" 
+                        class="text-lg sm:text-xl text-gray-600 capitalize"
+                    ></p>
+                </div>
+                <img 
+                    id="weatherIcon" 
+                    src="" 
+                    alt="Weather Icon" 
+                    class="w-24 h-24 sm:w-32 sm:h-32 animate-bounce"
+                >
+            </div>
+            <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                <div class="bg-blue-50 rounded-xl p-4 text-center hover:bg-blue-100 transition">
+                    <p class="font-semibold text-blue-800">Humidity</p>
+                    <p id="humidity" class="text-xl sm:text-2xl font-bold text-blue-600"></p>
+                </div>
+                <div class="bg-green-50 rounded-xl p-4 text-center hover:bg-green-100 transition">
+                    <p class="font-semibold text-green-800">Wind Speed</p>
+                    <p id="windSpeed" class="text-xl sm:text-2xl font-bold text-green-600"></p>
+                </div>
+                <div class="bg-purple-50 rounded-xl p-4 text-center hover:bg-purple-100 transition">
+                    <p class="font-semibold text-purple-800">Pressure</p>
+                    <p id="pressure" class="text-xl sm:text-2xl font-bold text-purple-600"></p>
+                </div>
+            </div>
+        </div>
 
         <!-- Extended Forecast -->
         <div 
             id="extendedForecast" 
-            class="max-w-7xl mx-auto grid grid-cols-5 gap-4 
-                   md:grid-cols-5 sm:grid-cols-2 max-sm:grid-cols-1"
+            class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"
         >
             <!-- Forecast days will be dynamically populated -->
         </div>
@@ -139,8 +204,10 @@
         ></div>
     </div>
 
-    <footer class="mt-auto py-4 text-center text-gray-500">
+    <footer class="mt-auto py-4 text-center text-gray-500 text-xs sm:text-base">
         <p>&copy; 2024 Somagani sai chandra. All rights reserved.</p>
     </footer>
+
+    <script src="app.js"></script>
 </body>
 </html>
